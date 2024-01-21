@@ -1,12 +1,7 @@
 // a majority element is an element which occurs more than floor(n/2) number of times
 // where n = length of the array
 
-enum Res {
-    Found(i64),
-    NotFound
-}
-
-fn majority_element(n: usize, v: &[i64]) -> Res {
+fn majority_element(n: usize, v: &[i64]) -> Option<i64> {
     let mut majority = v[0];
     let mut count = 1usize;
     for i in 1..n {
@@ -24,7 +19,7 @@ fn majority_element(n: usize, v: &[i64]) -> Res {
     // extra step for returning correct answer
     // if this is not done the above code will return candidate majority element
     if count != 1 {
-        Res::Found(majority)
+        Some(majority)
     } else {
         let mut c: usize = 0;
         for i in 0..n {
@@ -33,9 +28,9 @@ fn majority_element(n: usize, v: &[i64]) -> Res {
             }
         }
         if c > (n/2) {
-            Res::Found(majority)
+            Some(majority)
         } else {
-            Res::NotFound
+            None
         }
     }
 }
@@ -49,7 +44,7 @@ fn main() {
     }
 
     let r = majority_element(n, &v);
-    if let Res::Found(val) = r {
+    if let Some(val) = r {
         println!("Majority Element: {}", val);
     } else {
         println!("Majority Element does not exists");

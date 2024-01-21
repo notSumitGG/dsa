@@ -1,9 +1,4 @@
-enum Res {
-    Found(usize),
-    NotFound
-}
-
-fn bin_search(mut left: usize, mut right: usize, a: &Vec<usize>, find: usize) -> Res {
+fn bin_search(mut left: usize, mut right: usize, a: &Vec<usize>, find: usize) -> Option<usize> {
     let mut mid: usize;
     while left <= right {
         mid = left + (right - left) / 2;
@@ -12,10 +7,10 @@ fn bin_search(mut left: usize, mut right: usize, a: &Vec<usize>, find: usize) ->
         } else if a[mid] > find {
             right = mid - 1;
         } else {
-            return Res::Found(mid);
+            return Some(mid);
         }
     }
-    return Res::NotFound;
+    return None;
 }
 
 fn main() {
@@ -28,7 +23,7 @@ fn main() {
     }
 
     let index = bin_search(0, n, &a, find);
-    if let Res::Found(i) = index {
+    if let Some(i) = index {
         println!("{} found at index {}", find, i);
     } else {
         println!("{} not found", find);
