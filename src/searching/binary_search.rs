@@ -1,7 +1,7 @@
-// Binary search is a technique to find the a given element in a an array within log(n) amortized time,
+// Binary search is a technique to find the a given element in a an array within O(log(n)) amortized time,
 // which must be sorted in ascending or descending order
 
-pub fn bin_search(mut left: usize, mut right: usize, a: &Vec<usize>, find: usize) -> Option<usize> {
+pub fn binary_search(a: &[usize], find: usize, mut left: usize, mut right: usize) -> Option<usize> {
     let mut mid: usize;
     while left <= right {
         mid = left + (right - left) / 2;
@@ -30,7 +30,7 @@ mod tests {
             a.push(token.next());
         }
 
-        let index = bin_search(0, n, &a, find);
+        let index = binary_search(&a, find, 0, n);
         if let Some(i) = index {
             println!("{} found at index {}", find, i);
         } else {
