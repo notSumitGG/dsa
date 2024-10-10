@@ -1,8 +1,8 @@
 // Linear Searching is a brute force method of searching an element in a array with
 // amortized time of O(n)
 
-pub fn linear_search(v: &[usize], find: usize, left: usize, right: usize) -> Option<usize> {
-    for i in left..right {
+pub fn linear_search(v: &[usize], find: usize, lb: usize, ub: usize) -> Option<usize> {
+    for i in lb..ub {
         if v[i] == find {
             return Some(i);
         }
@@ -16,6 +16,7 @@ mod tests {
     use super::*;
 
     #[test]
+    #[ignore]
     fn main() {
         let mut token = crate::Scanner::new(std::io::stdin().lock());
         let n: usize = token.next();
@@ -31,5 +32,10 @@ mod tests {
         } else {
             println!("{} not found", find);
         }
+    }
+
+    #[test]
+    fn test1() {
+        assert_eq!(linear_search(&[3, 9, 0, 23, 83, 9], 9, 0, 6), Some(1));
     }
 }

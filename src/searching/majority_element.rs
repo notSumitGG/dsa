@@ -1,9 +1,10 @@
 // a majority element is an element which occurs more than floor(n/2) number of times
 // where n = length of the array
 
-pub fn majority_element(n: usize, v: &[i64]) -> Option<i64> {
+pub fn majority_element(v: &[i64]) -> Option<i64> {
     let mut majority = v[0];
     let mut count = 1usize;
+    let n = v.len();
     for i in 1..n {
         if v[i] == majority {
             count += 1
@@ -40,6 +41,7 @@ mod tests {
     use super::*;
 
     #[test]
+    #[ignore]
     fn main() {
         let mut token = crate::Scanner::new(std::io::stdin().lock());
         let n: usize = token.next();
@@ -48,16 +50,16 @@ mod tests {
             v.push(token.next());
         }
 
-        let r = majority_element(n, &v);
+        let r = majority_element(&v);
         if let Some(val) = r {
             println!("Majority Element: {}", val);
         } else {
             println!("Majority Element does not exists");
         }
     }
-}
 
-/*
-6
-1 2 1 3 1 1
-*/
+    #[test]
+    fn test1() {
+        assert_eq!(majority_element(&vec![1, 2, 1, 3, 1, 1]), Some(1));
+    }
+}
