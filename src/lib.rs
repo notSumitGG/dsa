@@ -1,3 +1,4 @@
+mod bit_manipulation;
 mod searching;
 
 // fn main() {

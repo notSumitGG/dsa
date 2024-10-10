@@ -1,3 +1,5 @@
+// For a given rotated array and a query element find the index of element
+
 // for ascending order
 pub fn rotated_array_binary_search(v: &[usize], find: usize) -> Option<usize> {
     let (mut lb, mut ub) = (0, v.len() - 1);
