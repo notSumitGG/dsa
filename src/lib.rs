@@ -1,4 +1,5 @@
 mod bit_manipulation;
+mod number_theory;
 mod searching;
 
 // fn main() {
