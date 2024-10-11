@@ -16,6 +16,21 @@ pub fn binary_search(v: &[usize], find: usize, mut lb: usize, mut ub: usize) -> 
     return None;
 }
 
+pub fn binary_search_recursive(v: &[usize], find: usize, lb: usize, ub: usize) -> Option<usize> {
+    if lb > ub {
+        return None;
+    }
+
+    let mid = lb + (ub - lb) / 2;
+    if v[mid] < find {
+        binary_search_recursive(v, find, mid + 1, ub)
+    } else if find < v[mid] {
+        binary_search_recursive(v, find, lb, mid - 1)
+    } else {
+        Some(mid)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -42,7 +57,11 @@ mod tests {
     #[test]
     fn test1() {
         assert_eq!(
-            binary_search(&[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10, 0, 10),
+            binary_search(&[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10, 0, 9),
+            Some(9)
+        );
+        assert_eq!(
+            binary_search_recursive(&[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10, 0, 9),
             Some(9)
         );
     }
