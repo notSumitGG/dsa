@@ -1,16 +1,16 @@
-fn generate_all_combinations(v: &mut Vec<Box<str>>, s: &[char], i: usize, t: &mut String) {
-    if i == s.len() {
-        v.push(Box::from(t.as_str()));
+fn combine_recurse(v: &mut Vec<Box<str>>, l: &[char], i: usize, s: &mut String) {
+    if i == l.len() {
+        v.push(Box::from(s.as_str()));
         return;
     }
 
-    t.push(s[i]);
-    generate_all_combinations(v, s, i + 1, t);
-    t.pop();
-    generate_all_combinations(v, s, i + 1, t);
+    s.push(l[i]);
+    combine_recurse(v, l, i + 1, s);
+    s.pop();
+    combine_recurse(v, l, i + 1, s);
 }
 
-pub fn all_combinations(s: &str) -> Vec<Box<str>> {
+pub fn combine(s: &str) -> Vec<Box<str>> {
     let mut v = Vec::with_capacity(usize::pow(2, s.len() as u32));
     let mut ch_list = Vec::with_capacity(s.len());
 
@@ -19,7 +19,7 @@ pub fn all_combinations(s: &str) -> Vec<Box<str>> {
     }
 
     let mut t = "".to_string();
-    generate_all_combinations(&mut v, &ch_list, 0, &mut t);
+    combine_recurse(&mut v, &ch_list, 0, &mut t);
 
     v
 }
@@ -31,7 +31,7 @@ mod tests {
     #[test]
     fn test1() {
         assert_eq!(
-            all_combinations("abc"),
+            combine("abc"),
             [
                 Box::from("abc"),
                 Box::from("ab"),
