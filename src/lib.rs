@@ -3,6 +3,17 @@ mod combinatorics;
 mod number_theory;
 mod searching;
 
+// #[cfg(test)]
+// mod tests {
+//     use super::*;
+
+//     #[test]
+//     fn test1() {
+//         assert_eq!(
+//         );
+//     }
+// }
+
 // fn main() {
 //     use std::io::Write;
 //     let mut token = Scanner::new(std::io::stdin().lock());

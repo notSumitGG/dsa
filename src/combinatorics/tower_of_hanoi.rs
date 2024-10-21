@@ -1,3 +1,13 @@
+// Tower of Hanoi is a mathematical puzzle where we have three rods (1, 2, and 3) and N disks.
+// Initially, all the disks are stacked in decreasing value of diameter i.e., the smallest disk
+// is placed on the top. The objective of the puzzle is to move the entire stack to another rod,
+// obeying the following simple rules:
+
+// 1: Only one disk can be moved at a time.
+// 2: Each move consists of taking the upper disk from one of the stacks and placing it on top
+//        of another stack i.e. a disk can only be moved if it is the uppermost disk on a stack.
+// 3: No disk may be placed on top of a smaller disk.
+
 fn hanoi(v: &mut Vec<(u8, u8)>, n: usize, start: u8, end: u8) {
     if n == 1 {
         v.push((start, end));
