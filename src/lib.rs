@@ -1,3 +1,4 @@
+mod backtracking;
 mod bit_manipulation;
 mod combinatorics;
 mod number_theory;
