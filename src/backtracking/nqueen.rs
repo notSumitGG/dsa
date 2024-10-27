@@ -18,11 +18,7 @@ fn solve_nqueen(
         solutions.push(
             board
                 .iter()
-                .map(|row| {
-                    row.iter()
-                        .map(|c| unsafe { char::from_u32_unchecked(*c as u32) })
-                        .collect()
-                })
+                .map(|row| row.iter().map(|c| *c as char).collect())
                 .collect(),
         );
         return;
@@ -40,8 +36,8 @@ fn solve_nqueen(
 fn is_safe(row: usize, col: usize, size: usize, board: &Vec<Vec<u8>>) -> bool {
     for i in 0..row {
         if board[i][col] == QUEEN
-            || (col >= row - i && board[i][col - (row - i)] == QUEEN)
-            || (size - col > row - i && board[i][col + (row - i)] == QUEEN)
+            || (col >= (row - i) && board[i][col - (row - i)] == QUEEN)
+            || (col + row - i < size && board[i][col + (row - i)] == QUEEN)
         {
             return false;
         }
