@@ -1,9 +1,9 @@
-struct NumTree {
+pub struct NumTree {
     tree: Vec<Vec<usize>>,
     root: usize,
 }
 
-struct NumTreeExt {
+pub struct NumTreeExt {
     pub depth: Vec<usize>,
     pub height: Vec<usize>,
 }
@@ -41,8 +41,8 @@ impl NumTree {
     }
 
     pub fn get_depth_and_height(&self) -> NumTreeExt {
-        let depth = vec![usize::MAX; self.tree.len()];
-        let height = vec![0; self.tree.len()];
+        let depth = vec![0usize; self.tree.len()];
+        let height = vec![0usize; self.tree.len()];
         let mut result = NumTreeExt { depth, height };
         result.dfs(&self.tree, self.root);
         result
