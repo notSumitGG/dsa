@@ -1,45 +1,36 @@
 pub fn solve_sudoku(mut board: [[u8; 9]; 9]) -> Option<[[u8; 9]; 9]> {
-    if solve(&mut board) {
+    if solve(&mut board, 0, 0) {
         Some(board)
     } else {
         None
     }
 }
 
-fn solve(board: &mut [[u8; 9]; 9]) -> bool {
-    let empty_cell = find_empty_cell(board);
-
-    if let Some((row, column)) = empty_cell {
-        for value in 1..=9 {
-            if is_value_valid(&board, (row, column), value) {
-                board[row][column] = value;
-                if solve(board) {
-                    return true;
-                }
-                // Backtracking if the board cannot be solved using the current configuration
-                board[row][column] = 0;
-            }
-        }
-    } else {
-        // If the board is complete
+fn solve(board: &mut [[u8; 9]; 9], mut row: usize, mut col: usize) -> bool {
+    if row == 8 && col == 9 {
         return true;
     }
 
-    // Returning false if the board cannot be solved using the current configuration
-    false
-}
+    if col == 9 {
+        row += 1;
+        col = 0;
+    }
 
-fn find_empty_cell(board: &[[u8; 9]; 9]) -> Option<(usize, usize)> {
-    // Find an empty cell in the board (returns None if all cells are filled)
-    for row in 0..9 {
-        for column in 0..9 {
-            if board[row][column] == 0 {
-                return Some((row, column));
+    if board[row][col] > 0 {
+        return solve(board, row, col + 1);
+    }
+
+    for i in 1..=9 {
+        if is_value_valid(&board, (row, col), i) {
+            board[row][col] = i;
+            if solve(board, row, col + 1) {
+                return true;
             }
+            board[row][col] = 0;
         }
     }
 
-    None
+    false
 }
 
 fn is_value_valid(board: &[[u8; 9]; 9], coordinates: (usize, usize), value: u8) -> bool {
@@ -70,4 +61,56 @@ fn is_value_valid(board: &[[u8; 9]; 9], coordinates: (usize, usize), value: u8) 
     }
 
     true
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test1() {
+        assert_eq!(
+            solve_sudoku([
+                [3, 0, 6, 5, 0, 8, 4, 0, 0],
+                [5, 2, 0, 0, 0, 0, 0, 0, 0],
+                [0, 8, 7, 0, 0, 0, 0, 3, 1],
+                [0, 0, 3, 0, 1, 0, 0, 8, 0],
+                [9, 0, 0, 8, 6, 3, 0, 0, 5],
+                [0, 5, 0, 0, 9, 0, 6, 0, 0],
+                [1, 3, 0, 0, 0, 0, 2, 5, 0],
+                [0, 0, 0, 0, 0, 0, 0, 7, 4],
+                [0, 0, 5, 2, 0, 6, 3, 0, 0],
+            ]),
+            Some([
+                [3, 1, 6, 5, 7, 8, 4, 9, 2],
+                [5, 2, 9, 1, 3, 4, 7, 6, 8],
+                [4, 8, 7, 6, 2, 9, 5, 3, 1],
+                [2, 6, 3, 4, 1, 5, 9, 8, 7],
+                [9, 7, 4, 8, 6, 3, 1, 2, 5],
+                [8, 5, 1, 7, 9, 2, 6, 4, 3],
+                [1, 3, 8, 9, 4, 7, 2, 5, 6],
+                [6, 9, 2, 3, 5, 1, 8, 7, 4],
+                [7, 4, 5, 2, 8, 6, 3, 1, 9],
+            ])
+        );
+    }
+
+    #[test]
+    fn test2() {
+        assert_eq!(
+            solve_sudoku([
+                [6, 0, 3, 5, 0, 8, 4, 0, 0],
+                [5, 2, 0, 0, 0, 0, 0, 0, 0],
+                [0, 8, 7, 0, 0, 0, 0, 3, 1],
+                [0, 0, 3, 0, 1, 0, 0, 8, 0],
+                [9, 0, 0, 8, 6, 3, 0, 0, 5],
+                [0, 5, 0, 0, 9, 0, 6, 0, 0],
+                [1, 3, 0, 0, 0, 0, 2, 5, 0],
+                [0, 0, 0, 0, 0, 0, 0, 7, 4],
+                [0, 0, 5, 2, 0, 6, 3, 0, 0],
+            ]),
+            // None::<[[u8; 9]; 9]>
+            Option::<[[u8; 9]; 9]>::None
+        );
+    }
 }

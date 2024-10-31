@@ -1,6 +1,7 @@
 mod backtracking;
 mod bit_manipulation;
 mod combinatorics;
+mod data_structures;
 mod number_theory;
 mod searching;
 
@@ -13,12 +14,6 @@ mod searching;
 //         assert_eq!(
 //         );
 //     }
-// }
-
-// fn main() {
-//     use std::io::Write;
-//     let mut token = Scanner::new(std::io::stdin().lock());
-//     let mut out = std::io::BufWriter::new(std::io::stdout().lock());
 // }
 
 pub struct Scanner<R> {
