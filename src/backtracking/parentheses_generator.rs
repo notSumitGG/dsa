@@ -1,3 +1,14 @@
+pub fn generate_parentheses(n: usize) -> Vec<String> {
+    // the length of the vector is based on catalan numbers
+    let l = ((n as u128 + 2..=2 * n as u128).product::<u128>() / (2..=n as u128).product::<u128>())
+        as usize;
+    let mut result = Vec::with_capacity(l);
+    if n > 0 {
+        generate("", 0, 0, n, &mut result);
+    }
+    result
+}
+
 fn generate(current: &str, opened: usize, closed: usize, n: usize, result: &mut Vec<String>) {
     if current.len() == (n * 2) {
         result.push(current.to_string());
@@ -13,17 +24,6 @@ fn generate(current: &str, opened: usize, closed: usize, n: usize, result: &mut 
         let new_str = current.to_string() + ")";
         generate(&new_str, opened, closed + 1, n, result);
     }
-}
-
-pub fn generate_parentheses(n: usize) -> Vec<String> {
-    // the length of the vector is based on catalan numbers
-    let l = ((n as u128 + 2..=2 * n as u128).product::<u128>() / (2..=n as u128).product::<u128>())
-        as usize;
-    let mut result = Vec::with_capacity(l);
-    if n > 0 {
-        generate("", 0, 0, n, &mut result);
-    }
-    result
 }
 
 #[cfg(test)]
