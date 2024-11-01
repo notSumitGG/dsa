@@ -1,9 +1,11 @@
-mod backtracking;
+mod data_structures;
+
+mod general;
+mod searching;
+
 mod bit_manipulation;
 mod combinatorics;
-mod data_structures;
 mod number_theory;
-mod searching;
 
 // #[cfg(test)]
 // mod tests {
