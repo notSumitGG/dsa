@@ -5,6 +5,7 @@ mod searching;
 
 mod bit_manipulation;
 mod combinatorics;
+mod linear_algebra;
 mod number_theory;
 
 // #[cfg(test)]
