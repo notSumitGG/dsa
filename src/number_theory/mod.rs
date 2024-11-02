@@ -1,4 +1,5 @@
 mod binary_exponentiation;
+mod extended_eucledean_algorithm;
 mod fibonacci;
 mod gcd_lcm;
 mod pascals_triangle;
@@ -6,6 +7,7 @@ mod prime_factorization;
 mod sieve_of_eratosthenes;
 
 pub use binary_exponentiation::fast_power;
+pub use extended_eucledean_algorithm::extended_euclidean_algorithm;
 pub use fibonacci::fibonacci;
 pub use gcd_lcm::compute_for_array;
 pub use gcd_lcm::gcd;
