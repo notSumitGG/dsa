@@ -1,3 +1,15 @@
+pub fn fibonacci(n: usize, a: &mut [u128]) {
+    a[0] = 0;
+    a[1] = 1;
+
+    // for bottom up approach
+    fibonacci_bottom_up(n, a);
+
+    // for top down approach
+    // a[n] = fibonacci_top_down(n, a);
+}
+
+#[allow(unused)]
 fn fibonacci_top_down(n: usize, a: &mut [u128]) -> u128 {
     if a[n] != 0 || n == 0 {
         return a[n];
@@ -10,17 +22,6 @@ fn fibonacci_bottom_up(n: usize, a: &mut [u128]) {
     for i in 2usize..=n {
         a[i] = a[i - 1] + a[i - 2];
     }
-}
-
-pub fn fibonacci(n: usize, a: &mut [u128]) {
-    a[0] = 0;
-    a[1] = 1;
-
-    // for bottom up approach
-    fibonacci_bottom_up(n, a);
-
-    // for top down approach
-    // a[n] = fibonacci_top_down(n, a);
 }
 
 #[cfg(test)]

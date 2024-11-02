@@ -41,24 +41,6 @@ mod tests {
     use super::*;
 
     #[test]
-    #[ignore]
-    fn main() {
-        let mut token = crate::Scanner::new(std::io::stdin().lock());
-        let n: usize = token.next();
-        let mut v: Vec<i64> = Vec::with_capacity(n);
-        for _ in 0usize..n {
-            v.push(token.next());
-        }
-
-        let r = majority_element(&v);
-        if let Some(val) = r {
-            println!("Majority Element: {}", val);
-        } else {
-            println!("Majority Element does not exists");
-        }
-    }
-
-    #[test]
     fn test1() {
         assert_eq!(majority_element(&vec![1, 2, 1, 3, 1, 1]), Some(1));
     }

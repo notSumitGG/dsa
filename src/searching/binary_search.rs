@@ -36,25 +36,6 @@ mod tests {
     use super::*;
 
     #[test]
-    #[ignore]
-    fn main() {
-        let mut token = crate::Scanner::new(std::io::stdin().lock());
-        let n: usize = token.next();
-        let find: usize = token.next();
-        let mut a: Vec<usize> = Vec::new();
-        for _ in 0..n {
-            a.push(token.next());
-        }
-
-        let index = binary_search(&a, find, 0, n);
-        if let Some(i) = index {
-            println!("{} found at index {}", find, i);
-        } else {
-            println!("{} not found", find);
-        }
-    }
-
-    #[test]
     fn test1() {
         assert_eq!(
             binary_search(&[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 10, 0, 9),

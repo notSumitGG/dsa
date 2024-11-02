@@ -26,19 +26,6 @@ mod tests {
     use super::*;
 
     #[test]
-    #[ignore]
-    fn main() {
-        let mut token = crate::Scanner::new(std::io::stdin().lock());
-        let n: usize = token.next();
-        let mut v: Vec<i64> = Vec::with_capacity(n);
-        for _ in 0..n {
-            v.push(token.next());
-        }
-        let (l, r, sum) = kadenes_algorithm(&v);
-        println!("[{}..={}] = {}", l, r, sum);
-    }
-
-    #[test]
     fn test1() {
         assert_eq!(kadenes_algorithm(&[1, 3, -4, 8, 2, -5, 0, 10]), (3, 7, 15));
     }
