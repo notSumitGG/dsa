@@ -1,3 +1,6 @@
+// Given an array set[] of non-negative integers and a value sum, the task is to
+// check if there is a subset of the given array whose sum is equal to the given sum.
+
 pub fn subset_sum(set: &[isize], target: isize) -> bool {
     subset_sum_recursive(set, target, set.len())
 }

@@ -1,3 +1,7 @@
+// Given a partially filled 9×9 2D array ‘grid[9][9]’, the goal is to assign
+// digits (from 1 to 9) to the empty cells so that every row, column, and
+// subgrid of size 3×3 contains exactly one instance of the digits from 1 to 9.
+
 pub fn solve_sudoku(mut board: [[u8; 9]; 9]) -> Option<[[u8; 9]; 9]> {
     if solve(&mut board, 0, 0) {
         Some(board)
