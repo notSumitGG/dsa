@@ -1,3 +1,5 @@
+// For a given string generate all possible combinations with letters of that string
+
 fn combine_recurse(v: &mut Vec<Box<str>>, l: &[char], i: usize, s: &mut String) {
     if i == l.len() {
         v.push(Box::from(s.as_str()));

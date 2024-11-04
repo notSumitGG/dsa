@@ -1,3 +1,5 @@
+// For a given string generate all possible unique permutations with letters of that string.
+
 use std::{cell::Cell, collections::HashMap};
 
 pub fn permute_unique_recurse(v: &mut Vec<Box<str>>, h: &HashMap<char, Cell<u8>>, s: &mut String) {
